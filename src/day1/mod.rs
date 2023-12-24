@@ -14,8 +14,7 @@ pub fn main() {
         all_maps.extend(get_number(&*reversed_line, true));
         let mut highest_index :usize = 0;
         let mut lowest_index:usize = 1000;
-        for (key, value) in &all_maps{
-            println!("key: {key}, value {value}");
+        for (key, _) in &all_maps{
             if key > &highest_index {
                 highest_index = *key;
             }
@@ -36,12 +35,9 @@ pub fn main() {
         }else{
             number.push(word_to_char(high_s));
         }
-
-
-        println!("{}", number);
         total += number.parse::<u32>().unwrap()
     }
-    println!("antwoord = {total}");
+    println!("Answer Day 1 = {total}");
 }
 
 
