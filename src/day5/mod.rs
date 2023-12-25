@@ -1,4 +1,4 @@
-use std::collections::{HashMap, HashSet};
+pub mod part2;
 use std::fs;
 
 struct Seeds {
@@ -11,9 +11,6 @@ pub fn main() {
     let binding = fs::read_to_string("inputs/day5/input.txt").expect("Should have been able to read the file");
     let test = binding.split("\n").map(|s| String::from(s)).collect::<Vec<String>>();
     let mut seeds = test[0].split("seeds: ").map(|s| String::from(s)).collect::<Vec<String>>()[1].split(" ").map(|s| String::from(s)).collect::<Vec<String>>();
-    for seed in &seeds {
-        println!("{seed}")
-    }
     for line in &test[2..] {
         if line.trim().is_empty() {
             seeds = map_inputs(collection_lines, &seeds);
@@ -28,18 +25,7 @@ pub fn main() {
     let answer: i64 = seeds.iter().map(|s| s.trim().parse::<i64>().unwrap()).min().unwrap();
     println!("Answer Day 5 = {}", answer)
 }
-// fn load_seeds(s:&String) -> Vec<Seeds> {
-//     let seeds = s.split("seeds: ").map(|s| String::from(s)).collect::<Vec<String>>()[1].split(" ").map(|s| String::from(s)).collect::<Vec<String>>();
-//     let mut temp_set: HashSet<String> = HashSet::new();
-//     for index in (0..seeds.len()).step_by(2){
-//         let base: i64 = seeds[index].parse::<i64>().unwrap();
-//         for i in base..base+seeds[index+1].trim().parse::<i64>().unwrap()+1  {
-//             temp_set.insert(i.to_string());
-//         }
-//     }
-//
-//     return Vec::from_iter(temp_set);
-// }
+
 fn map_inputs(lines: Vec<&str>, sources:&Vec<String>) -> Vec<String> {
     let mut dests : Vec<String> = Vec::new();
     for source_s in sources {
